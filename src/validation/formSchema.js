@@ -5,7 +5,9 @@ export default yup.object().shape({
             .string()
             .min(2, 'Your name must be at least 2 characters long')
             .required('You must enter a name.'),
-    size: yup.string(),
+    size: yup
+            .string()
+            .oneOf(['small', 'medium', 'large']),
     pepperoni: yup.boolean(),
     sausage: yup.boolean(),
     mushrooms: yup.boolean(),

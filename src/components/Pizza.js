@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function PizzaOrder(props) {
-    const { values, update, submit, errors} = props;
+    const { values, update, submit, errors, disabled} = props;
 
     const onChange = evt => {
         const { name, value, type, checked } = evt.target
@@ -96,7 +96,7 @@ export default function PizzaOrder(props) {
                     />
                 </label>
             </div>
-            <button>Submit Order</button>
+            <button id="submit" disabled={disabled}>Submit Order</button>
         </form>
     
     )

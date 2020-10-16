@@ -27,6 +27,7 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [pizzaOrders, setPizzaOrders] = useState([])
   const [formErrors, setFormErrors] = useState(initalFormErrors)
+  const [disabled, setDisabled] = useState(true)
 
   const updateForm = (name, value) => {
     yup
@@ -67,6 +68,12 @@ const App = () => {
 
   }
 
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid);
+    })
+  }, [formValues])
+  
   console.log(pizzaOrders)
 
 
@@ -74,7 +81,7 @@ const App = () => {
     <>
       <Switch>
       <Route path='/pizza'>
-      <Pizza values={formValues} update={updateForm} submit={formSubmit} errors={formErrors}/>
+      <Pizza values={formValues} update={updateForm} submit={formSubmit} errors={formErrors} disabled={disabled}/>
       </Route>
       <Route path='/confirmation'>
         <Confirmation />
