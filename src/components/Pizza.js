@@ -1,4 +1,28 @@
 import React from 'react'
+import styled from 'styled-components'
+import pizza from '../Assets/Pizza.jpg'
+
+const StyledDiv = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url(${pizza});
+background-repeat: no-repeat;
+background-size: 100%;
+height: 90vh;
+
+div {
+background-color: white;
+font-size: 2rem;
+padding: 2%;
+border-radius: 20px;
+a{
+    color: black;
+    text-decoration: none;
+}
+}
+
+`;
 
 export default function PizzaOrder(props) {
     const { values, update, submit, errors, disabled} = props;
@@ -15,7 +39,11 @@ export default function PizzaOrder(props) {
     }
 
 
+
+
     return (
+        <StyledDiv>
+        <div>
         <form onSubmit={onSubmit}>
             <div>
                 {errors.name}
@@ -48,6 +76,8 @@ export default function PizzaOrder(props) {
             </div>
             <div>
                 <p>Toppings: </p>
+                <ul>
+                    <li>
                 <label>
                     Pepperoni:
                     <input
@@ -57,6 +87,8 @@ export default function PizzaOrder(props) {
                     onChange={onChange}
                     />
                 </label>
+                </li>
+                <li>
                 <label>
                     Sausage:
                     <input
@@ -66,6 +98,8 @@ export default function PizzaOrder(props) {
                     onChange={onChange}
                     />
                 </label>
+                </li>
+                <li>
                 <label>
                     Mushrooms:
                     <input
@@ -75,6 +109,8 @@ export default function PizzaOrder(props) {
                     onChange={onChange}
                     />
                 </label>
+                </li>
+                <li>
                 <label>
                     Pineapple:
                     <input
@@ -84,6 +120,8 @@ export default function PizzaOrder(props) {
                     onChange={onChange}
                     />
                 </label>
+                </li>
+                </ul>
             </div>
             <div>
                 <label>
@@ -98,6 +136,7 @@ export default function PizzaOrder(props) {
             </div>
             <button id="submit" disabled={disabled}>Submit Order</button>
         </form>
-    
+        </div>
+    </StyledDiv>
     )
 }

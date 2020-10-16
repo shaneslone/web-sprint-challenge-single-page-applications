@@ -6,6 +6,7 @@ import axios from 'axios';
 import * as yup from 'yup'
 import schema from './validation/formSchema'
 import Home from './components/Home'
+import Header from './components/Header'
 
 
 const App = () => {
@@ -73,18 +74,24 @@ const App = () => {
       setDisabled(!valid);
     })
   }, [formValues])
-  
+
   console.log(pizzaOrders)
 
+  let lastOrder = pizzaOrders[pizzaOrders.length - 1] ? pizzaOrders[pizzaOrders.length - 1] : {name: '', size: '', toppings: [], instructions: ''}
 
   return (
     <>
+      <Header />
       <Switch>
       <Route path='/pizza'>
       <Pizza values={formValues} update={updateForm} submit={formSubmit} errors={formErrors} disabled={disabled}/>
       </Route>
       <Route path='/confirmation'>
-        <Confirmation />
+        <Confirmation 
+        name={lastOrder.name} 
+        size={lastOrder.size} 
+        toppings={lastOrder.toppings} 
+        instructions={lastOrder.instructions}/>
       </Route>
       <Route path='/'>
         <Home />
