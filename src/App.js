@@ -48,6 +48,7 @@ const App = () => {
       .then(res => {
         setPizzaOrders([...pizzaOrders, res.data])
         setFormValues(initialFormValues)
+        history.push('/confirmation')
       })
       .catch(err => {
         console.log(err)
@@ -65,7 +66,6 @@ const App = () => {
       instructions: formValues.instructions
     }
     postPizzaOrder(pizzaOrder)
-    history.push('/confirmation')
 
   }
 
